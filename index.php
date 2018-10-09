@@ -9,6 +9,7 @@
 try{
 $conn = conn();
 resetdb();
+insertUser("Vinay","Patil",NULL,NULL);
 echo "lol";
 }
 catch(PDOException $e) {
