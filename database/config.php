@@ -29,6 +29,8 @@ function resetdb() {
     USE $dbname;
     CREATE TABLE users(
         id int PRIMARY KEY AUTO_INCREMENT,
+        username varchar(32),
+        password varchar(32),
         fname   varchar(32),
         sname   varchar(32),
         age     int,
