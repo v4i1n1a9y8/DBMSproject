@@ -7,46 +7,47 @@ $dbname = "test";
 
 function conn() {
     global $hostname,$username,$password,$dbname;
-    $opts     = array(
-        PDO::ATTR_PERSISTENT         => true, // use existing connection if exists, otherwise try to connect
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // by default fetch results as associative array
-    );
-    $conn = new PDO("mysql:host=$hostname", $username, $password,$opts);
-    // set the PDO error mode to exception
+    $conn = new PDO("mysql:host=$hostname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $conn;
 }
-function usedb() {
+function usedb($conn) {
     global $dbname;
     conn()->exec("use $dbname");
 }
-function resetdb() {
+function resetdb($conn) {
     global $dbname;
-    $conn = conn();
     $conn->exec("
     DROP DATABASE IF EXISTS $dbname;
     CREATE DATABASE $dbname;
     USE $dbname;
     CREATE TABLE users(
         id int PRIMARY KEY AUTO_INCREMENT,
-        username varchar(32),
+        email   varchar(64),
         password varchar(32),
         fname   varchar(32),
         sname   varchar(32),
         age     int,
         mnumber int
     );
+    CREATE TABLE messages(
+        msgid int PRIMARY KEY AUTO_INCREMENT,
+        sid int,
+        rid int,
+        message int
+    );
     ");
     //$stmt = $conn->prepare("");
 }
-function insertUser($fname,$sname,$age,$mnumber){
-    $conn = conn();
-    $stmt = $conn->prepare("INSERT INTO users (fname,sname,age,mnumber)
-    VALUES (:fname,:sname,:age,:mnumber)");
-    $stmt->bindParam(':fname', $fname);
-    $stmt->bindParam(':sname', $sname);
-    $stmt->bindParam(':age', $age);
-    $stmt->bindParam(':mnumber', $mnumber);
-    $stmt->execute();
+function insertUser($conn,$email,$password,$fname,$sname,$age,$mnumber){
+    $stmt = $conn->prepare("INSERT INTO users (email,password,fname,sname,age,mnumber)
+    VALUES (?,?,?,?,?,?)");
+    $stmt->execute([$email,$password,$fname,$sname,$age,$mnumber]);
+}
+
+function sendMsg($conn,$sender,$receiver,$message){
+    $stmt = $conn->prepare("INSERT INTO messages (sid,rid,message)
+    VALUES (?,?,?)");
+    $stmt->execute([$sender,$receiver,$message]);
 }
 ?>
