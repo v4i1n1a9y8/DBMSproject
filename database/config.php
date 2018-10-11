@@ -42,7 +42,6 @@ function resetdb($conn) {
         confirmed boolean
     );
     ");
-    //$stmt = $conn->prepare("");
 }
 function insertUser($conn,$email,$password,$fname,$sname,$age,$mnumber){
     $stmt = $conn->prepare("INSERT INTO users (email,password,fname,sname,age,mnumber)
@@ -63,5 +62,10 @@ function sendFreq($conn,$user1,$user2) {
     $stmt = $conn->prepare("INSERT INTO friends (uid1,uid2,confirmed)
     VALUES (?,?,?)");
     $stmt->execute([$user1,$user2,true]);
+}
+function getMessages($conn){
+    $stmt = $conn->prepare("SELECT * FROM messages");
+    $stmt->execute();
+    return $stmt->fetchAll( PDO::FETCH_ASSOC);
 }
 ?>
