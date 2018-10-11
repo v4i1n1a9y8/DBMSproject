@@ -34,7 +34,12 @@ function resetdb($conn) {
         msgid int PRIMARY KEY AUTO_INCREMENT,
         sid int,
         rid int,
-        message int
+        message TEXT
+    );
+    CREATE TABLE friends(
+        uid1 int,
+        uid2 int,
+        confirmed boolean
     );
     ");
     //$stmt = $conn->prepare("");
@@ -44,10 +49,19 @@ function insertUser($conn,$email,$password,$fname,$sname,$age,$mnumber){
     VALUES (?,?,?,?,?,?)");
     $stmt->execute([$email,$password,$fname,$sname,$age,$mnumber]);
 }
-
+function getUsers($conn){
+    $stmt = $conn->prepare("SELECT * from users");
+    $stmt->execute();
+    return $stmt->fetchAll()[0]["fname"];
+}
 function sendMsg($conn,$sender,$receiver,$message){
     $stmt = $conn->prepare("INSERT INTO messages (sid,rid,message)
     VALUES (?,?,?)");
     $stmt->execute([$sender,$receiver,$message]);
+}
+function sendFreq($conn,$user1,$user2) {
+    $stmt = $conn->prepare("INSERT INTO friends (uid1,uid2,confirmed)
+    VALUES (?,?,?)");
+    $stmt->execute([$user1,$user2,true]);
 }
 ?>

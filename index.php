@@ -7,8 +7,12 @@ hmmm
 try{
     $conn = conn();
     resetdb($conn);
-    insertUser($conn,"a@b.com","afgeqfg","afg","qft",NULL,4);
-    sendMsg($conn,0,NULL,"hellooooooooooo");
+    insertUser($conn,"a@b.com","password","user1","test",NULL,NULL);
+    insertUser($conn,"b@a.com","password","user2","test",NULL,NULL);
+    foreach (getUsers($conn) as $user) {
+        foreach ($user as $key=>$value)
+            echo $key."=>".$value."<br>";
+    }
     echo "lol";
 }
 catch(PDOException $e) {
