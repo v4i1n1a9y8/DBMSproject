@@ -1,6 +1,12 @@
 <div id="local" class="tab-pane fade in active">
 
    <div id=local_list>
+<img style="
+display: block;
+margin-left: auto;
+margin-right: auto;
+"
+src='images/ajax-loader.gif'>
     </div>
 
 </div>

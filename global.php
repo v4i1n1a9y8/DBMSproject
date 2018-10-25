@@ -3,6 +3,12 @@
 
 <div id="global" class="tab-pane fade">
     <div id=global_list>
+<img style="
+display: block;
+margin-left: auto;
+margin-right: auto;
+"
+src='images/ajax-loader.gif'>
     </div>
 </div>
 

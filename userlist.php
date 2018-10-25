@@ -1,4 +1,11 @@
-<div  id="users"></div>
+<div  id="users">
+<img style="
+display: block;
+margin-left: auto;
+margin-right: auto;
+"
+src='images/ajax-loader.gif'>
+</div>
 
 
 <script>  //AJAX 
@@ -10,7 +17,7 @@
             url:"database/fetch_user.php",
             method:"POST",
             success:function(data){
-                $('#users').after(data);
+                $('#users').html(data);
             }
         })
     }  
