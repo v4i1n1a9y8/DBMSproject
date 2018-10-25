@@ -66,11 +66,15 @@
                 <div class="col-sm-2 ">
                     <div class="panel panel-info">
                     <div class="panel-heading">Users</div>
-                    <div class="panel-body users">user1</div>
+                    <?php include "userlist.php"?>
                     </div>
                 </div>
             </div>
     </div>
 </div>
+
     </body>
 </html>
+
+
+
