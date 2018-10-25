@@ -9,12 +9,14 @@
     }
 ?>
 
+<!DOCTYPE html>
 <html>
     <head>
         <title>
             Home
         </title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+
+        <?php include("modules/head.php")?>
         <style>
         table {
             border-collapse: collapse;
@@ -27,30 +29,48 @@
         }
         </style>
     </head>
+    
     <body>
-        lol
-        <p align="right">Hi - <?php echo $_SESSION['username']; ?> - <a href="logout.php">Logout</a></p>
-    
-    
-        <div id="user_details"></div>
+    <?php include("modules/navigation.php")?>
+
+<div class="container-fluid">
+
+    <div class="container">
+
+        
+
+
+
+        
+        <div class="row">
+                <div class="col-sm-10 ">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#local">Local</a></li>
+                            <li><a data-toggle="tab" href="#global">Global</a></li>
+                            <li><a data-toggle="tab" href="#messages">Messages</a></li>
+                        </ul>
+                        </div>
+                        
+                        <div class="panel-body">
+
+                            <div class="tab-content">
+                                <?php include "local.php"?>
+                                <?php include "global.php"?>
+                                <?php include "messages.php"?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 ">
+                    <div class="panel panel-info">
+                    <div class="panel-heading">Users</div>
+                    <div class="panel-body users">user1</div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
     </body>
 </html>
-
-<script>  //AJAX 
-    $(document).ready(function(){
-
-    fetch_user();
-
-    function fetch_user()
-    {
-    $.ajax({
-    url:"database/fetch_user.php",
-    method:"POST",
-    success:function(data){
-        $('#user_details').html(data);
-    }
-    })
-    }
-    
-    });  
-</script>
