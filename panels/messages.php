@@ -1,6 +1,6 @@
 <div id="messages" class="tab-pane fade">
     <div class="panel panel-default">
-        <div class="panel-heading" id="receiver">Rakesh</div>
+        <div class="panel-heading" id="receiver">No user Selected</div>
 <div class="panel panel-warning" style="overflow-y: scroll;height:400px" id="message-list">
 
     <img style="
