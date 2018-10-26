@@ -1,27 +1,26 @@
+<div id="local" class="tab-pane fade in active">
 
-
-
-<div id="global" class="tab-pane fade">
-    <div id=global_list>
+   <div id=local_list>
 <img style="
 display: block;
 margin-left: auto;
 margin-right: auto;
 "
-src='images/ajax-loader.gif'>
+src='../images/ajax-loader.gif'>
     </div>
+
 </div>
 
 <script>  //AJAX 
     $(document).ready(function(){
-    fetch_global();
-    function fetch_global()
+    fetch_local();
+    function fetch_local()
     {
         $.ajax({
-            url:"database/fetch_global.php",
+            url:"../database/fetch_local.php",
             method:"POST",
             success:function(data){
-                $('#global_list').html(data);
+                $('#local_list').html(data);
             }
         })
     }

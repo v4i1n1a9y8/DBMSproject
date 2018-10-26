@@ -35,6 +35,21 @@
 
 <div class="container-fluid">
 
+<div class="form-group">
+  <button type="submit" class="btn btn-default" onclick="resetdb()">DO NOT PRESS, reset database</button>
+</div> 
+<script>
+  function resetdb()
+    {
+        $.ajax({
+            type:"POST",
+            url:"../database/resetdb.php",
+            success:function(data){
+            }
+        })
+    }
+</script>
+
     <div class="container">
 
         
@@ -43,22 +58,22 @@
 
         
         <div class="row">
-                <div class="col-sm-10 ">
+                <div class="col-sm-8">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#local">Local</a></li>
                             <li><a data-toggle="tab" href="#global">Global</a></li>
-                            <li><a data-toggle="tab" href="#messages">Messages</a></li>
+                            <li><a data-toggle="tab" href="#messages" id="message-tab">Messages</a></li>
                         </ul>
                         </div>
                         
                         <div class="panel-body">
 
                             <div class="tab-content">
-                                <?php include "local.php"?>
-                                <?php include "global.php"?>
-                                <?php include "messages.php"?>
+                                <?php include "panels/local.php"?>
+                                <?php include "panels/global.php"?>
+                                <?php include "panels/messages.php"?>
                             </div>
                         </div>
                     </div>
@@ -66,7 +81,7 @@
                 <div class="col-sm-2 ">
                     <div class="panel panel-info">
                     <div class="panel-heading">Users</div>
-                    <?php include "userlist.php"?>
+                    <?php include "panels/userlist.php"?>
                     </div>
                 </div>
             </div>
@@ -75,6 +90,7 @@
 
     </body>
 </html>
+
 
 
 

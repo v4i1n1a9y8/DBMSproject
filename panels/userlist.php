@@ -4,7 +4,7 @@ display: block;
 margin-left: auto;
 margin-right: auto;
 "
-src='images/ajax-loader.gif'>
+src='../images/ajax-loader.gif'>
 </div>
 
 
@@ -14,24 +14,29 @@ src='images/ajax-loader.gif'>
     function fetch_user()
     {
         $.ajax({
-            url:"database/fetch_user.php",
+            url:"../database/fetch_user.php",
             method:"POST",
             success:function(data){
                 $('#users').html(data);
             }
         })
     }  
-    function fetch_messages(id)
+    
+    
+    });  
+    function fetch_messages(id,name)
     {
+        $('#message-tab').tab('show');
+        //$('#receiver').html(name);
+        $('#receiver').html(name);
+        window.receiver = id;
         return;
         $.ajax({
-            url:"database/fetch_local.php",
+            url:"../database/fetch_local.php",
             method:"POST",
             success:function(data){
                 $('#local_list').html(data);
             }
         })
     }
-    
-    });  
 </script>

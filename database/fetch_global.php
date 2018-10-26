@@ -7,6 +7,7 @@ try {
     $query = "
     SELECT * FROM messages
      WHERE user_id_2 IS NULL
+     ORDER BY tstamp DESC LIMIT 10
     ";
     $stmt = $conn->prepare($query);
     $stmt->execute();
@@ -15,6 +16,9 @@ try {
     $output = "";
 
     foreach($result as $row){
+        if(!isPublic($row["message_id"])){
+            continue;
+        }
         $float = " ";
         if($row["user_id_1"]==$_SESSION["user_id"]){
             $float = 'text-align: right;';

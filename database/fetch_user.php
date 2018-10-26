@@ -12,10 +12,14 @@ $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $output = " ";
-$a=0;
+$a=1;
 foreach($result as $row){
+    $friend = "";
+    if(isFriend($row["user_id"],$_SESSION["user_id"])){
+        $friend = "Frnd";
+    }
     $output .= '
-    <div class="panel-body users" id="user'.$a.'"  onclick="fetch_messages('.$a.')">'.$row['username'].'</div>
+    <div class="panel-body users" id="user'.$a.'"  onclick="fetch_messages('.$row['user_id'].','."'".$row['username']."'".')">'.$row['username'].' '.$friend.'</div>
     ';
     $a+=1;
 }
