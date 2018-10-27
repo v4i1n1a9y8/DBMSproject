@@ -10,7 +10,7 @@ src='../images/ajax-loader.gif'>
 
 <script>  //AJAX 
     $(document).ready(function(){
-    fetch_user();
+    setInterval(fetch_user, 5000);
     function fetch_user()
     {
         $.ajax({

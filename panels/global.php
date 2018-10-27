@@ -21,7 +21,7 @@ src='../images/ajax-loader.gif'>
 
 <script>  //AJAX 
     $(document).ready(function(){
-    setInterval(fetch_global, 3000);
+    setInterval(fetch_global, 5000);
     function fetch_global()
     {
         $.ajax({

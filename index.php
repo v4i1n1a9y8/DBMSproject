@@ -38,11 +38,6 @@
 
 
     <div class="container">
-
-        
-
-
-
         
         <div class="row">
                 <div class="col-sm-8">
@@ -52,6 +47,7 @@
                             <li class="active"><a data-toggle="tab" href="#local">Local</a></li>
                             <li><a data-toggle="tab" href="#global">Global</a></li>
                             <li><a data-toggle="tab" href="#messages" id="message-tab">Messages</a></li>
+                            <li><a data-toggle="tab" href="#search" >Search Friends</a></li>
                         </ul>
                         </div>
                         
@@ -61,6 +57,7 @@
                                 <?php include "panels/local.php"?>
                                 <?php include "panels/global.php"?>
                                 <?php include "panels/messages.php"?>
+                                <?php include "panels/searchfriends.php"?>
                             </div>
                         </div>
                     </div>

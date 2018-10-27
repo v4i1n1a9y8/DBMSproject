@@ -23,7 +23,7 @@
 <script>  //AJAX 
     $(document).ready(function(){
     $("#message-list").animate({ scrollTop: $(document).height() }, "fast");
-    setInterval(fetch_messages, 3000);
+    setInterval(fetch_messages, 5000);
     function fetch_messages()
     {
         var rec = window.receiver;
@@ -43,6 +43,8 @@
 
 function post_message(id)
     {
+        var element = document.getElementById("message-list");
+        element.scrollTop = element.scrollHeight;
         var rec = window.receiver;
         var msg = $('#message-private').val();
         $.ajax({

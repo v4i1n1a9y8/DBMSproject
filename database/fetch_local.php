@@ -15,7 +15,10 @@ try {
     $output = "";
 
     foreach($result as $row){
-        if(!isFriend($row["user_id_1"],$_SESSION["user_id"])){
+        if(isPublic($row["message_id"])){
+            continue;
+        }
+        if(!isFriend($row["user_id_1"],$_SESSION["user_id"]) && $row["user_id_1"]!=$_SESSION["user_id"]){
             continue;
         }
         $float = " ";

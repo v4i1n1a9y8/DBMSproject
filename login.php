@@ -40,23 +40,46 @@
     $message = "<label>Wrong Username</label>";
   }
   }
+
+  if(isset($_POST["register"]))
+  {
+    $stmt=$conn->prepare("SELECT * FROM users WHERE username=?");
+    $stmt->execute([$_POST["username"]]);
+    $count = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if(count($count)==0){
+        addUser($_POST["username"],$_POST["password"]);
+        $message = "<label>Registered successfully</label>";
+    }
+    else{
+    $message = "<label>Username already exists</label>";
+    }
+
+  }
+
 ?>
 <html>
-  <head></head>
+  <head>
+  
+  <?php include("modules/head.php")?>
+  
+  </head>
   <body>
-  <form method="post">
-      <p ><?php echo $message; ?></p>
-      <div >
-       <label>Enter Username</label>
-       <input type="text" name="username" required />
-      </div>
-      <div>
-       <label>Enter Password</label>
-       <input type="password" name="password" required />
-      </div>
-      <div>
-       <input type="submit" name="login" value="Login" />
-      </div>
-    </form>
+<div class="container">
+
+ <form method="post">
+  <p ><?php echo $message; ?></p>
+  <div class="form-group">
+    <label for="username">Username:</label>
+       <input type="text" class="form-control" name="username" required />
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+      <input type="password" class="form-control" name="password" required />
+  </div>
+  <input type="submit" class="btn btn-default" name="login" value="Login" />
+  <input type="submit" class="btn btn-default" name="register" value="Register" />
+</form> 
+
+</div>
   </body>
 </html>

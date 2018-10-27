@@ -15,8 +15,8 @@ $output = " ";
 $a=1;
 foreach($result as $row){
     $friend = "";
-    if(isFriend($row["user_id"],$_SESSION["user_id"])){
-        $friend = "Frnd";
+    if(!isFriend($row["user_id"],$_SESSION["user_id"])){
+        continue;
     }
     $output .= '
     <div class="panel-body users" id="user'.$a.'"  onclick="fetch_messages('.$row['user_id'].','."'".$row['username']."'".')">'.$row['username'].' '.$friend.'</div>
@@ -24,7 +24,6 @@ foreach($result as $row){
     $a+=1;
 }
 
-$output .="</table>";
 echo $output;
 
 ?>
