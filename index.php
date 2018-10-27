@@ -48,6 +48,7 @@
                             <li><a data-toggle="tab" href="#global">Global</a></li>
                             <li><a data-toggle="tab" href="#messages" id="message-tab">Messages</a></li>
                             <li><a data-toggle="tab" href="#search" >Search Friends</a></li>
+                            <li><a data-toggle="tab" href="#profile" >Profile</a></li>
                         </ul>
                         </div>
                         
@@ -58,6 +59,7 @@
                                 <?php include "panels/global.php"?>
                                 <?php include "panels/messages.php"?>
                                 <?php include "panels/searchfriends.php"?>
+                                <?php include "panels/profile.php"?>
                             </div>
                         </div>
                     </div>

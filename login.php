@@ -64,6 +64,15 @@
   
   </head>
   <body>
+
+<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" href="#">ChatNow</a>
+            </div>
+</nav>
+<div class="container">Welcome to ChatNow!</div>
+
 <div class="container">
 
  <form method="post">

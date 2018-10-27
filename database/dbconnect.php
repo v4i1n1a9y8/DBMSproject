@@ -73,6 +73,11 @@ function addUser($username,$password){
     $stmt=$conn->prepare("INSERT INTO last_active VALUES (?,NOW()");
     $stmt->execute([$conn->lastInsertId()]);
 }
+function updateUser($userid,$password){
+    global $conn;
+    $stmt=$conn->prepare("UPDATE users set password=?  WHERE user_id=?");
+    $stmt->execute([password_hash($password, PASSWORD_DEFAULT),$userid]);
+}
 function getUsername($user_id){
     global $conn;
     $stmt=$conn->prepare("SELECT username FROM users where user_id=?");
@@ -165,25 +170,6 @@ function isPublic($msgid){
     $stmt->execute([$msgid]);
     $count = $stmt->fetch()[0];
     if($count>0){
-        return true;
-    }
-    return false;
-}
-
-function active($u_id){
-    global $conn;
-    $stmt=$conn->prepare("UPDATE last_active WHERE user_id=?");
-    $stmt->execute([$u_id]);
-}
-
-function getOnline($u_id){
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT tstamp FROM last_active WHERE user_id=?");
-    $stmt->execute([$u_id]);
-    $time = $stmt->fetch()[0];
-    $ctime = time()- 5 * 60 * 1000;
-    if ($time>$ctime){
         return true;
     }
     return false;
